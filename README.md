@@ -75,12 +75,35 @@ DNMP项目特点：
 ```
 
 ## 2.快速使用
-1. 本地安装
-    - `git` (sudo yum install -y git)
-    - `Docker`(sudo curl -sSL https://get.daocloud.io/docker | sh）
-    - `docker-compose 1.7.0+` (curl -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose)
+    
+1.本地安装
+
+    安装docker和docker compose
+    -------------------------
+
+    linux内核需要大约3.1.0 ,下面是centos 7 下面部署的过程：
+
+
+    1.1、安装docker
+
+    ```
+    sudo curl -sSL https://get.daocloud.io/docker | sh
+    ```
+
+    1.2、安装 docker compose，资料：[install-compose](https://docs.docker.com/compose/install/#install-compose)
+
+    ```
+    sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose)
+    ```
+    1.3、安装 git
+    ```
+    sudo yum install -y git
+    ```
 2. `clone`项目：
     ```
+    $ mkdir -p /www/web
+    $ cd /www/web
     $ git clone https://github.com/roke2010/dnmp.git
     ```
 3. 如果不是`root`用户，还需将当前用户加入`docker`用户组：
