@@ -84,22 +84,22 @@ DNMP项目特点：
     linux内核需要大约3.1.0 ,下面是centos 7 下面部署的过程：
 
 
-1.1、安装docker
+   1.1、安装docker
 
-```
+    ```
     sudo curl -sSL https://get.daocloud.io/docker | sh
-```
+    ```
 
-1.2、安装 docker compose，资料：[install-compose](https://docs.docker.com/compose/install/#install-compose)
+   1.2、安装 docker compose，资料：[install-compose](https://docs.docker.com/compose/install/#install-compose)
 
-```
-    sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+    ```
+    sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o        /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose)
-```
-1.3、安装 git
-```
+    ```
+   1.3、安装 git
+    ```
     sudo yum install -y git
-```
+    ```
 2. `clone`项目：
     ```
     $ mkdir -p /www/web
