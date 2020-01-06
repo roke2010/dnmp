@@ -77,8 +77,8 @@ DNMP项目特点：
 ## 2.快速使用
 1. 本地安装
     - `git` (sudo yum install -y git)
-    - `Docker`(系统需为Linux，Windows 10 Build 15063+，或MacOS 10.12+，且必须要`64`位）
-    - `docker-compose 1.7.0+`
+    - `Docker`(sudo curl -sSL https://get.daocloud.io/docker | sh）
+    - `docker-compose 1.7.0+` (curl -L https://github.com/docker/compose/releases/download/1.13.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose)
 2. `clone`项目：
     ```
     $ git clone https://github.com/roke2010/dnmp.git
