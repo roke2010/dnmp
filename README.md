@@ -86,32 +86,33 @@ DNMP项目特点：
 
    1.1、安装docker
 
-    ```
+```
     sudo curl -sSL https://get.daocloud.io/docker | sh
-    ```
+```
 
    1.2、安装 docker compose，资料：[install-compose](https://docs.docker.com/compose/install/#install-compose)
 
-    ```
+```
     sudo curl -L https://github.com/docker/compose/releases/download/1.18.0/docker-compose-`uname -s`-`uname -m` -o        /usr/local/bin/docker-compose
     chmod +x /usr/local/bin/docker-compose)
-    ```
+```
    1.3、安装 git
-    ```
+   
+```
     sudo yum install -y git
-    ```
+```
 2. `clone`项目：
     ```
     $ mkdir -p /www/web
     $ cd /www/web
     $ git clone https://github.com/roke2010/dnmp.git
-    ```
+```
 3. 如果不是`root`用户，还需将当前用户加入`docker`用户组：
-    ```
+```
     $ sudo gpasswd -a ${USER} docker
-    ```
+```
 4. 拷贝并命名配置文件（Windows系统请用`copy`命令），启动：
-    ```
+```
     $ cd dnmp                                           # 进入项目目录
     $ cp env.sample .env                                # 复制环境变量文件
     $ cp docker-compose.sample.yml docker-compose.yml   # 复制 docker-compose 配置文件。默认启动3个服务：
@@ -119,7 +120,7 @@ DNMP项目特点：
                                                         # PHP5.6、PHP5.4、MongoDB，ElasticSearch等，请删
                                                         # 除服务块前的注释
     $ docker-compose up                                 # 启动
-    ```
+```
 5. 在浏览器中访问：`http://localhost`或`https://localhost`(自签名HTTPS演示)就能看到效果，PHP代码在文件`./www/localhost/index.php`。
 
 ## 3.PHP和扩展
