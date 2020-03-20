@@ -373,7 +373,40 @@ $ redis-cli -h127.0.0.1
 ```
 这里`host`参数不能用localhost是因为它默认是通过sock文件与mysql通信，而容器与主机文件系统已经隔离，所以需要通过TCP方式连接，所以需要指定IP。
 
-
+## 9.日常操作和常见问题
+1.我们经常使用php内部调用mysql,但是docker相互质检是不独立的.使用localhost或者127.0.0.1是ping不通mysql的.
+这个时候我们只需要在hosts上面只想就可以了
+```
+#sudo vim /etc/hosts
+127.0.0.1       mysql
+127.0.0.1       mongo
+127.0.0.1       redis
+```
+就可以了.
+2.如何调用crontab定时任务呢?
+两者方式,
+一种直接在主机上运行
+```
+docker exec -it 容器名 "要执行的命令完整路径"
+例如:docker exec -it  php /www/localhost/index.php
+```
+另外一种,在docker主机上面运行也是可以的.
+```
+dphp
+crontab -e
+#每分钟执行
+*       *       *       *       *       php /www/localhost/index.php
+#或者直接创建一个每分钟执行的sh文件即可
+mkdir -p /etc/periodic/1min
+crontab -e
+*       *       *       *       *       /etc/periodic/1min
+$cat <<EOF > /etc/periodic/1min/foo
+> #!/bin/sh
+> echo "Hello, world"
+> EOF
+chmod a+x /etc/periodic/1min/foo
+#这样就可以直接输出
+```
 
 ## License
 MIT
