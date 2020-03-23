@@ -283,7 +283,44 @@ services:
 #    ports:
 #      - "${LOGSTASH_HOST_PORT_C}:9600"
 #      - "${LOGSTASH_HOST_PORT_S}:5044"
-
+#  gitlab:
+#    image: 'gitlab/gitlab-ce:latest'
+#    container_name: gitlab
+#    restart: always
+#    hostname: 'git.****.com'
+#    environment:
+#      TZ: 'Asia/Shanghai'
+#      GITLAB_OMNIBUS_CONFIG: |
+#        external_url 'http://git.****.com:8929'  #域名或者IP都可以,以后就是这个连接可以直接访问
+#        gitlab_rails['time_zone'] = 'Asia/Shanghai'
+#        gitlab_rails['smtp_enable'] = true
+#        gitlab_rails['smtp_address'] = "smtp.163.com"
+#        gitlab_rails['smtp_port'] = 465
+#        gitlab_rails['smtp_user_name'] = "****@163.com"  #用自己的163邮箱
+#        gitlab_rails['smtp_password'] = "****"
+#        gitlab_rails['smtp_domain'] = "163.com"
+#        gitlab_rails['smtp_authentication'] = "login"
+#        gitlab_rails['smtp_enable_starttls_auto'] = true
+#        gitlab_rails['smtp_openssl_verify_mode'] = 'peer'
+#        gitlab_rails['smtp_tls'] = true
+#        gitlab_rails['gitlab_email_from'] = '****@163.com'
+#        gitlab_rails['gitlab_email_display_name'] = '****'
+#        gitlab_rails['gitlab_email_reply_to'] = '****@163.com'
+#        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+#        gitlab_rails['gitlab_email_enabled'] = true
+#    ports:
+#      - '8929:8929'
+#      - '8443:443'
+#      - '2224:22'
+#    volumes:
+#      - ${GITLAB_CONF_FILE}:/etc/gitlab
+#      - ${GITLAB_LOG_FILE}:/var/log/gitlab
+#      - ${GITLAB_DATA_FILE}:/var/opt/gitlab
+#    logging:
+#      driver: "json-file"
+#      options:
+#        max-size: "20m"
+#        max-file: "10"
 
 networks:
   default:
