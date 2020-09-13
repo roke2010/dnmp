@@ -244,10 +244,12 @@ $ docker ps -a        # 所有容器
 ```bash
 alias dnginx='docker exec -it nginx /bin/sh'
 alias dphp='docker exec -it php /bin/sh'
-alias dphp56='docker exec -it php56 /bin/sh'
-alias dphp54='docker exec -it php54 /bin/sh'
 alias dmysql='docker exec -it mysql /bin/bash'
 alias dredis='docker exec -it redis /bin/sh'
+alias dgit='docker exec -it gitlab /bin/sh'
+alias dra='docker exec -it phpredisadmin /bin/sh'
+alias dmq='docker exec -it rabbitmq /bin/sh'
+alias dmongo='docker exec -it mongodb /bin/bash'
 ```
 下次进入容器就非常快捷了，如进入php容器：
 ```bash
@@ -333,6 +335,34 @@ http://localhost:8081
 Redis连接信息如下：
 - host: (本项目的Redis容器网络)
 - port: `6379`
+
+### 6.3 Mongodb 与 adminmongo
+mongodb 映射到`27017`端口
+```
+可以通过账号密码登录
+mongo --port 27017 -u 账号 -p 密码
+如果不知道密码
+你使用超级管理员账号
+use admin 
+
+创建用户密码
+db.createUser({user: "账号",pwd: "密码",roles: [{role: "userAdminAnyDatabase", db: "admin" }]}) #对某个数据库的进行授权.
+
+修改数据库密码:
+db.changeUserPassword("账号","密码");
+
+show dbs          查看数据库
+use dbname      进入数据库
+show users        查看当前数据库用户权限
+
+```
+adminmongo 端口为:`1234` 链接为:
+```
+http://localhost:1234 可以登录里面查看mongodb的信息
+登录的时候需要验证链接和密码
+一般数据为:
+mongodb://账号:密码@IP:27017/admin(数据库)
+```
 
 
 ## 7.在正式环境中安全使用
