@@ -213,9 +213,13 @@ services:
     image: mongo:${MONGODB_VERSION}
     container_name: mongodb
     environment:
-        MONGO_INITDB_ROOT_USERNAME: "${MONGODB_INITDB_ROOT_USERNAME}"
-        MONGO_INITDB_ROOT_PASSWORD: "${MONGODB_INITDB_ROOT_PASSWORD}"
-        TZ: "$TZ"
+        - AUTH=yes # 开启认证才能登录
+        - MONGODB_ADMIN_USER=${MONGODB_ADMIN_USER} # 管理员账号
+        - MONGODB_ADMIN_PASS=${MONGODB_ADMIN_PASS} # 管理员密码
+        - MONGODB_APPLICATION_DATABASE=${MONGODB_APPLICATION_DATABASE} #应用数据库名称
+        - MONGODB_APPLICATION_USER=${MONGODB_APPLICATION_USER} #应用的账号
+        - MONGODB_APPLICATION_USER=${MONGODB_APPLICATION_USER} #应用的密码
+        - TZ=$TZ
     volumes:
       - ${DATA_DIR}/mongo:/data/db:rw
       - ${DATA_DIR}/mongo_key:/mongo:rw
@@ -223,8 +227,8 @@ services:
        - "${MONGODB_HOST_PORT}:27017"
     networks:
        - default
-    command:
-       --auth
+#    command:
+#       --auth
 
 #  adminmongo:
 #    image: mrvautin/adminmongo
